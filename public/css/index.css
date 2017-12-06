@@ -1,0 +1,341 @@
+* {
+  margin: 0; 
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tree {
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+
+.Male {
+  background-color: rgb(118, 118, 207) !important;
+  color: white !important;
+}
+
+.Female {
+  background-color: rgb(243, 167, 167) !important;
+  color: white !important;
+}
+
+span {
+  cursor: pointer;
+  user-select: none;
+  min-width: 75px;
+}
+
+.tree ul {
+  padding-top: 20px; 
+  position: relative;
+	
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.tree li {
+  float: left; text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before, .tree li::after {
+  content: '';
+  position: absolute; top: 0; right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%; height: 45px;
+  z-index: -1;
+}
+
+.tree li::after {
+  right: auto; left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+  display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child { padding-top: 0;}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after {
+  border: 0 none;
+}
+
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  
+  -webkit-transform: translateX(1px);
+  -moz-transform: translateX(1px);
+  transform: translateX(1px);
+  
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
+}
+
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+  content: '';
+  position: absolute; top: -12px; left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0; height: 32px;
+  z-index: -1;
+}
+
+.tree li span {
+  border: 1.5px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  display: inline-block;
+  background: white;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.tree li span+span {
+  margin-left: 20px;
+  position: relative;
+}
+
+.tree li span+span::before {
+  content: '';
+  position: absolute;
+  border-top: 1px solid #ccc;
+  top: 50%; left: -21px; 
+  width: 20px;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li span:hover, .tree li span:hover~ul li span {
+    border: 1.5px solid black; text-shadow: 1px 1px 1px black;
+}
+/*Connector styles on hover*/
+.tree li span:hover~ul li::after, 
+.tree li span:hover~ul li::before, 
+.tree li span:hover~ul::before, 
+.tree li span:hover~ul ul::before {
+  border-color: #94a0b4;
+}
+
+#msg {
+  margin: 30px 0;
+}
+
+#detailForm {
+  margin: 20px 0;
+  align-content: center;
+}
+
+.input {
+	position: relative;
+  z-index: 1;
+	display: inline-block;
+  margin: 0 20px;
+  margin-bottom: 10px;
+	max-width: 200px;
+	width: 200px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.input__field {
+  position: absolute;
+	display: block;
+	float: right;
+	border: none;
+  font-weight: bold;
+  font-size: 10pt;
+  outline: none;
+  top: 11px;
+	padding: 0.85em 0.85em 0.15em 0;
+	width: 100%;
+	background: transparent;
+	color: #595F6E;
+}
+
+.input__label {
+	display: inline-block;
+	color: #6a7989;
+	font-weight: bold;
+	font-size: 11pt;
+  user-select: none;
+  position: absolute;
+	bottom: 0;
+	left: -4px;
+	padding: 0 0.25em;
+	width: 100%;
+	height: calc(100% - 1em);
+	text-align: left;
+  pointer-events: none;
+  border-color: hsl(200, 100%, 50%);
+}
+
+.input__label-content {
+  transition-property: color;
+  transition-duration: 0.4s;
+  transition-delay: 0.2s; 
+	position: absolute;
+	display: block;
+  width: 100%;
+  bottom: 20px;
+}
+
+.input__label::before,
+.input__label::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 10px);
+	border-bottom: 1px solid #B9C1CA;
+}
+
+.input__label::after {
+	border-bottom: 4px solid hsl(200, 100%, 50%);
+	transform: translate3d(-100%, 0, 0);
+	transition: transform 0.3s;
+}
+
+.input__field:focus + .input__label::after, 
+.input__filled .input__label::after {
+	transform: translate3d(0, 0, 0);
+}
+
+.input__field:focus + .input__label .input__label-content, 
+.input__filled .input__label-content {
+  color: rgb(50, 53, 61);
+	animation: anim-1 0.3s forwards;
+}
+
+@keyframes anim-1 {
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(1em, 0, 0);
+		transform: translate3d(1em, 0, 0);
+	}
+	51% {
+		opacity: 0;
+    transform: translate3d(-1em, -70%, 0);
+
+	}
+	100% {
+		opacity: 1;
+		transform: translate3d(0, -70%, 0);
+	}
+}
+
+.positioner {
+  height: 25px;
+  width: 80px;
+  margin: auto;
+  margin-top: 15px;
+  
+}
+
+.positioner p{
+  position: absolute
+}
+
+.label_male {
+  left: -50px;
+}
+
+.label_female {
+  right: -64px;
+}
+
+.gender {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  width: 80px;
+  border-radius: 5px;
+  border: 1px solid #666666;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  transition-duration: 0.5s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+}
+
+#male {
+  background-color: rgb(140, 140, 247);
+}
+
+#female {
+  background-color: rgb(238, 145, 145);
+}
+
+#female div{
+  width: 30px;
+  height: 24px;
+  border-radius: 5px;
+  border: 1px solid #6a7989;
+  background-color: white;
+
+  transform: translate(49px, 0);
+  transition-duration: 0.5s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+}
+
+#male div{
+  width: 30px;
+  height: 24px;
+  border-radius: 5px;
+  border: 1px solid #6a7989;
+  background-color: white;
+
+  transform: translate(-1px, 0);
+  transition-duration: 0.5s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+}

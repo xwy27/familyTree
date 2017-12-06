@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- Special Thanks to http://thecodeplayer.com For-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <link rel="stylesheet" href="/modules/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/modules/jQuery-contextMenu/jquery.contextMenu.min.css">
+	<link rel="stylesheet" href="/modules/jQuery-UI/jquery-ui.min.css">
+	<link rel="stylesheet" href="/modules/remodal/remodal.css">
+	<link rel="stylesheet" href="/modules/remodal/remodal-default-theme.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<script src="/modules/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/modules/jQuery-UI/jquery-ui.min.js"></script>
+	<script src="/modules/remodal/remodal.min.js"></script>
+  <script src="/modules/jQuery-contextMenu/jquery.contextMenu.min.js"></script>
+</head>
+
+<body>
+  <script src="/js/index.js"></script>
+
+	<div class="tree">
+		<ul>  
+			<li>
+				<span id="0" class="Male">Me</span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="remodal" data-remodal-id="modalMsg">
+		<button data-remodal-action="close" class="remodal-close"></button>
+		<h1 id="noticeTitle">Notice</h1>
+		<p id="msg">
+			You'd better not refresh this page.
+		</p>
+		<br>
+		<button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+	</div>
+
+	<div class="remodal" data-remodal-id="modalForm">
+			<button data-remodal-action="close" class="remodal-close"></button>
+			<h1>Set Detail</h1>
+			<form id="detailForm">
+				
+				<span class="input">
+						<input class="input__field" type="text" id="firstName" spellcheck="false" maxlength="8"/>
+						<label class="input__label" for="firstName">
+							<span class="input__label-content">Firstname:</span>
+						</label>
+				</span>
+				
+				<span class="input">
+						<input class="input__field" type="text" id="lastName" spellcheck="false" maxlength="8" />
+						<label class="input__label" for="lastName">
+							<span class="input__label-content">Lastname:</span>
+						</label>
+				</span>
+				
+				<span class="input">
+						<input class="input__field" type="text" id="birthDay" spellcheck="false" />
+						<label class="input__label" for="birthDay">
+							<span class="input__label-content">Birthday:</span>
+						</label>
+				</span>
+				
+				<span class="input">
+						<input class="input__field" type="text" id="deadDay" spellcheck="false" />
+						<label class="input__label" for="deadDay">
+							<span class="input__label-content">Deadday:</span>
+						</label>
+				</span>
+				
+				<br>
+				<div class="positioner">
+					<div id="female" class="gender">
+						<p class="label_male">Male</p>
+						<div></div>
+						<p class="label_female">Female</p>
+					</div>					
+				</div>
+				
+			</form>
+			<br>
+			<button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+			<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+		</div>
+
+
+</body></html>
