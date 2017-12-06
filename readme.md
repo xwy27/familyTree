@@ -40,3 +40,8 @@ After doing that, you're supposed to be able to enjoy playing by visiting http:/
 ### Back-end
 
 1. C/C++ with Addon to build Node.js module to build a Tree in RAM and deal with requirement from the server-end.
+
+### TeamWork Member
+
+1.  Siskon(Front-end)
+2.  ZiJian(Back-end)
